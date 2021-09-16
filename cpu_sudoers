@@ -1,0 +1,12 @@
+ALL ALL = NOPASSWD: /usr/local/bin/cpu_performance
+ALL ALL = NOPASSWD: /usr/local/bin/cpu_default
+ALL ALL = NOPASSWD: /usr/local/bin/cpu_smt_on
+ALL ALL = NOPASSWD: /usr/local/bin/cpu_smt_off
+ALL ALL = NOPASSWD: /usr/local/bin/cpu_up
+ALL ALL = NOPASSWD: /usr/local/bin/cpu_down
+ALL ALL = NOPASSWD: /usr/local/bin/gpu_performance
+ALL ALL = NOPASSWD: /usr/local/bin/gpu_default
+ALL ALL = NOPASSWD: /usr/bin/cat /sys/kernel/debug/dri/0/amdgpu_pm_info
+ALL ALL = NOPASSWD: /usr/bin/radeontop
+ALL ALL = NOPASSWD: /usr/bin/cpu_game_down
+ALL ALL = NOPASSWD: /usr/bin/cpu_game_up

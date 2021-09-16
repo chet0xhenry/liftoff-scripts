@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#move all root pids off main cores
+for pid in $(ps -ax -o pid=); do sudo taskset -a -p -c 6-11,18-23 $pid &> /dev/null; done

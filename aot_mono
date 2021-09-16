@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ~/.local/share/Steam/steamapps/common/Liftoff/Liftoff_Data/Managed/
+for file in ./*.dll
+do
+  mono --aot=full -O=all "$file" || mono --aot "$file"
+done

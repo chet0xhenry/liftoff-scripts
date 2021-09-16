@@ -1,0 +1,2 @@
+#!/bin/bash
+echo 1 | tee /sys/devices/system/cpu/cpu*/online
