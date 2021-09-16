@@ -4,10 +4,11 @@ DEFAULT_OPTIONS="mcpu=native,nodebug,no-write-symbols"
 cd ~/.local/share/Steam/steamapps/common/Liftoff/Liftoff_Data/Managed/
 for file in ./*.dll
 do
-    mono --aot=llvm,full,$DEFAULT_OPTIONS -O=all "$file" || \
-    mono --aot=full,$DEFAULT_OPTIONS -O=all "$file" || \
-    mono --aot=llvm,$DEFAULT_OPTIONS -O=all "$file" || \
-    mono --aot=$DEFAULT_OPTIONS -O=all "$file" || \
-    mono --aot=llvm,$DEFAULT_OPTIONS "$file" \
-    mono --aot=$DEFAULT_OPTIONS "$file"
+    mono --aot="llvm,llvmllc=-march=native,full,$DEFAULT_OPTIONS" -O=all "$file" || \
+    mono --aot="full,$DEFAULT_OPTIONS" -O=all "$file" || \
+    mono --aot="llvm,llvmllc=-march=native,$DEFAULT_OPTIONS" -O=all "$file" || \
+    mono --aot="$DEFAULT_OPTIONS" -O=all "$file" || \
+    mono --aot="llvm,llvmllc=-march=native,$DEFAULT_OPTIONS" -llvmllc="march=native" "$file" \
+    mono --aot="$DEFAULT_OPTIONS" "$file" \
+    mono --aot="nodebug,no-write-symbols" "$file"
 done
