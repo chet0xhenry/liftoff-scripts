@@ -1,12 +1,13 @@
 #!/bin/bash
 DEFAULT_OPTIONS="mcpu=native,nodebug,no-write-symbols"
-LLVM="llvm,llvm-path=$1"
+#LLVM="llvm,llvm-path=$1"
+LLVM=""
 #LLVM="llvm,llvmllc=-march=native,llvm-path=$1"
 
 cd ~/.local/share/Steam/steamapps/common/Liftoff/Liftoff_Data/Managed/
 for file in ./*.dll
 do
-    mono --aot="full,$LLVM,$DEFAULT_OPTIONS" -O=all "$file" || \
+    mono --aot="full,$LLVM,$DEFAULT_OPTIONS" --ffast-math -O=all "$file" || \
     mono --aot="full,$DEFAULT_OPTIONS" -O=all "$file" || \
     mono --aot="$LLVM,$DEFAULT_OPTIONS" -O=all "$file" || \
     mono --aot="$DEFAULT_OPTIONS" -O=all "$file" || \
