@@ -23,8 +23,7 @@ taskset -a -c 0 ./Liftoff.x86_64 -force-vulkan $@ & # start Liftoff
 PID=$! # liftoff's main pid
 
 sleep 30             # wait 30s
-BPID="$(ls -1 /proc/$PID/task/  | sed -n '11p')" # get the PID of the 11th thread started by liftoff
-SPID="$(ls -1 /proc/$PID/task/  | sed -n '35p')" # get the PID of the 36th thread started by liftoff
+
 sudo cpu_up          # power up all cores
 sudo cpu_smt_on      # enable SMT or HT
 sudo cpu_performance # set high clock speed scaling
@@ -33,8 +32,13 @@ sudo cpu_game_up
 taskset -a -p -c 0-2 $PID # move the main lift off task to core 1 the rest stay on core 0
 taskset -p -c 3 $PID # move the main lift off task to core 1 the rest stay on core 0
 
-taskset -p -c 4 $BPID # move the main lift off task to core 1 the rest stay on core 0
-taskset -p -c 5 $SPID # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 4 $(ls -1 /proc/$PID/task/  | sed -n '8p')  # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 5 $(ls -1 /proc/$PID/task/  | sed -n '28p') # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 6 $(ls -1 /proc/$PID/task/  | sed -n '29p') # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 7 $(ls -1 /proc/$PID/task/  | sed -n '30p') # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 8 $(ls -1 /proc/$PID/task/  | sed -n '42p') # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 9 $(ls -1 /proc/$PID/task/  | sed -n '44p') # move the main lift off task to core 1 the rest stay on core 0
+taskset -p -c 10 $(ls -1 /proc/$PID/task/  | sed -n '45p') # move the main lift off task to core 1 the rest stay on core 0
 
 #kitty bash -c "kitty @ new-window gdb --pid $BPID &\
 #    kitty @ launch --location vsplit watch -t -n0.5 sudo cat /sys/kernel/debug/dri/0/amdgpu_pm_info &\
