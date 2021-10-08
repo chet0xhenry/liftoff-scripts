@@ -17,7 +17,7 @@ if false; then
 fi
 
 sudo cpu_smt_off # turn off SMT or HY cuts logical cores in 1/2
-sudo cpu_down    # turn off all but one core, only one core remains
+sudo cpu_down 6  # turn off all but n cores
 
 taskset -a -c 0 ./Liftoff.x86_64 -force-vulkan $@ & # start Liftoff
 PID=$! # liftoff's main pid
