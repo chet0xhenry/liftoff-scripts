@@ -1,6 +1,8 @@
 #!/bin/bash
 
 cp ./launch.sh ~/.local/share/Steam/steamapps/common/Liftoff/launch.sh
+cp ./screen ~/.local/share/Steam/steamapps/common/Liftoff/screen
+cp ./mvwin ~/.local/share/Steam/steamapps/common/Liftoff/mvwin
 
 DEFAULT_OPTIONS="mcpu=native,nodebug,no-write-symbols"
 #LLVM="llvm,llvm-path=$1"
